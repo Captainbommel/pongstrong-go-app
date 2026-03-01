@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PongStrong - Gruppenphase </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    html, body { 
+      width: 100%; height: 100%;
+      font-family: 'Noto Sans Mono', monospace;
+      background-color: rgba(169, 216, 255, 0.94);
+      margin: 0; 
+      text-align: center;
+    }
+    .navbar {
+      background-color: white;
+      width: 100%; height: 25px;
+      padding: 10px 0 10px 0;
+      display: flex; align-items: center;
+      box-shadow: 0 5px 13px;
+      margin-bottom: 20px;
+    }
+    .navbar a { color: black; font-size: large; margin: 8px; }
+
+    .groups { width: 100%; height: 100%; text-align: center;}
+    h3 { margin: 10px; text-align: center;}
+    .group {
+      width: 500px; height: 1250px;
+      border-radius: 20px; border: solid rgb(189, 40, 70) 4px;
+      background-color: cornsilk; 
+      padding: 10px;
+      margin: 10px;
+      display: inline-block; position: relative;
+    }
+    .finnished {
+      font-size: x-large; text-align: center; color: rgb(180, 70, 130);
+      writing-mode: vertical-rl; rotate: 180deg;
+    }
+    @media only screen and (max-width: 560px) {
+      .group { width: 85%; height: fit-content; }
+    }
+    .match {
+      background-color: white;
+      padding: 12px; margin: 10px; height: 12.4%;
+      border-radius: 15px; border: solid black 3px;
+      display: grid; grid-template-columns: 40% 40% 20%;
+      word-wrap: break-word;
+    }
+    .team {
+      padding: 5px;
+      border-left: rgb(180, 70, 130) dashed 2px;
+    }
+    .ti_number { display: flex; align-items: center; justify-content: center; position: relative; }
+    .t1::after, .t2::after, .t3::after, .t4::after, .t5::after, .t6::after, .t7::after {
+      width: 58px; height: 58px; border-radius: 50%;
+      font-size: 40px; text-align: center; 
+    }
+    .t1::after { background-color: rgb(208, 157, 28); content: "1"; }
+    .t2::after { background-color: rgb(192, 47, 184); content: "2"; }
+    .t3::after { background-color: rgb(99, 160, 93); content: "3"; }
+    .t4::after { background-color: rgb(28, 67, 151); content: "4"; }
+    .t5::after { background-color: rgb(222, 97, 14); content: "5"; }
+    .t6::after { background-color: rgb(32, 218, 209); content: "6"; }
+    .t7::after { background-color: rgb(142, 105, 205); content: "7"; }
+    .select {
+      padding: 10px;
+      border-radius: 20px; border: solid rgb(189, 40, 70) 4px;
+      display: inline-block; position: relative;
+      background-color: cornsilk;
+    }
+    #groupNo {
+      width: 30px; 
+      display: inline-block; position: relative;
+      bottom: 1px;
+    }
+    #btn_all {
+      background-color: rgb(255, 255, 255);
+      border: solid rgb(189, 40, 70) 2.2px; border-radius: 5px;
+      font-family: inherit;
+    }
+    #btn_all:hover {
+      opacity: 85%;
+    }
+    #btn_all:active {
+      opacity: 100%;
+      border-color: rgb(128, 35, 54)
+    }
+  </style>
+  <script>
+    function showGroup(n) {
+      const groups = document.getElementsByClassName("group");
+      for (let i = 0; i < groups.length; i++) {
+        groups[i].style.display = "none";
+      }
+      if (n > groups.length) {return}
+      groups[n-1].style.display = "inline-block";
+    }
+    function showAll() {
+      const groups = document.getElementsByClassName("group");
+      for (let i = 0; i < groups.length; i++) {
+        groups[i].style.display = "inline-block";
+      }
+      document.getElementById("groupNo").value = ""
+    }
+  </script>
+</head>
+<body>
+    <div class="navbar">
+      <a href="spielfeld.html">Spielfeld</a>
+      <a href="übersicht.html">Gruppen</a>
+      <a href="turnierbaum.html">Knockout</a>
+      <a href="regeln.html">Regeln</a>
+    </div>
+
+    <form class="select" id="select">
+      Zeige Gruppe:
+      <input type="number" id="groupNo" name="groupNo" value="" min="1" max="6" onchange="showGroup(this.value)">
+      <button type="button" id="btn_all" onclick="showAll()">Alle</button>
+    </form>
+
+    <div class="groups">
+        <!-- Gruppe 1 -->
+        <div class="group">
+          <h3>--- Gruppe 1 ---</h3>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierkönige</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Max, Leon</p>
+              </div>
+              <div class="team">
+                <p>Hopfenherzen</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Lena, Sophie</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 6</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Schaumkrone</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Anna, Lisa</p>
+              </div>
+              <div class="team">
+                <p>Ballmagnet</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Erik, Finn</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 4</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierkönige</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Max, Leon</p>
+              </div>
+              <div class="team">
+                <p>Schaumkrone</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Anna, Lisa</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 8</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Hopfenherzen</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Lena, Sophie</p>
+              </div>
+              <div class="team">
+                <p>Ballmagnet</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Erik, Finn</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br> D  - 3</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Ballmagnet</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Erik, Finn</p>
+              </div>
+              <div class="team">
+                <p>Bierkönige</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Max, Leon</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>5 - 10</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Hopfenherzen</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Lena, Sophie</p>
+              </div>
+              <div class="team">
+                <p>Schaumkrone</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Anna, Lisa</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>11 - 10</div>
+            </div>
+        </div>
+
+        <!-- Gruppe 2 -->
+        <div class="group">
+          <h3>--- Gruppe 2 ---</h3>
+
+            <div class="match">
+              <div class="team">
+                <p>Ponginator</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Kai, Nico</p>
+              </div>
+              <div class="team">
+                <p>Wurfmaschine</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Tim, Jan</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 7</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Treffsicher</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Mia, Lara</p>
+              </div>
+              <div class="team">
+                <p>Bierbeben</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Noah, Paul</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 3</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Ponginator</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Kai, Nico</p>
+              </div>
+              <div class="team">
+                <p>Treffsicher</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Mia, Lara</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 9</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Wurfmaschine</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Tim, Jan</p>
+              </div>
+              <div class="team">
+                <p>Bierbeben</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Noah, Paul</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 2</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierbeben</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Noah, Paul</p>
+              </div>
+              <div class="team">
+                <p>Ponginator</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Kai, Nico</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>4 - 10</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Wurfmaschine</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Tim, Jan</p>
+              </div>
+              <div class="team">
+                <p>Treffsicher</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Mia, Lara</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 8</div>
+            </div>
+        </div>
+
+        <!-- Gruppe 3 -->
+        <div class="group">
+          <h3>--- Gruppe 3 ---</h3>
+
+            <div class="match">
+              <div class="team">
+                <p>Becherfluch</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Felix, Moritz</p>
+              </div>
+              <div class="team">
+                <p>Kugelhagel</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Tom, Ben</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 5</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Malzmeister</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Luis, David</p>
+              </div>
+              <div class="team">
+                <p>Becher Mafia</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Jonas, Elias</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 7</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Becherfluch</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Felix, Moritz</p>
+              </div>
+              <div class="team">
+                <p>Malzmeister</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Luis, David</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 6</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Kugelhagel</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Tom, Ben</p>
+              </div>
+              <div class="team">
+                <p>Becher Mafia</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Jonas, Elias</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 4</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Becher Mafia</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Jonas, Elias</p>
+              </div>
+              <div class="team">
+                <p>Becherfluch</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Felix, Moritz</p>
+              </div>
+                <div class="ti_number t4"></div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Kugelhagel</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Tom, Ben</p>
+              </div>
+              <div class="team">
+                <p>Malzmeister</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Luis, David</p>
+              </div>
+                <div class="ti_number t2"></div>
+            </div>
+        </div>
+
+        <!-- Gruppe 4 -->
+        <div class="group">
+          <h3>--- Gruppe 4 ---</h3>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierrakete</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Lukas, Henrik</p>
+              </div>
+              <div class="team">
+                <p>Trinkinator</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Marc, Sven</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 5</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Pong Stars</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Yannick, Robin</p>
+              </div>
+              <div class="team">
+                <p>Krugkönige</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Fabian, Dennis</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 6</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierrakete</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Lukas, Henrik</p>
+              </div>
+              <div class="team">
+                <p>Pong Stars</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Yannick, Robin</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br> D  - 7</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Trinkinator</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Marc, Sven</p>
+              </div>
+              <div class="team">
+                <p>Krugkönige</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Fabian, Dennis</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 8</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Krugkönige</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Fabian, Dennis</p>
+              </div>
+              <div class="team">
+                <p>Bierrakete</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Lukas, Henrik</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>3 - 10</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Trinkinator</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Marc, Sven</p>
+              </div>
+              <div class="team">
+                <p>Pong Stars</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Yannick, Robin</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>11 - 10</div>
+            </div>
+        </div>
+
+        <!-- Gruppe 5 -->
+        <div class="group">
+          <h3>--- Gruppe 5 ---</h3>
+
+            <div class="match">
+              <div class="team">
+                <p>Zielwasser</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Philip, Tobias</p>
+              </div>
+              <div class="team">
+                <p>Bierpiloten</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Stefan, Chris</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 7</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Wurfkraft</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Oliver, Hannes</p>
+              </div>
+              <div class="team">
+                <p>Hopfenhelden</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Simon, Marvin</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 4</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Zielwasser</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Philip, Tobias</p>
+              </div>
+              <div class="team">
+                <p>Wurfkraft</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Oliver, Hannes</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 5</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierpiloten</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Stefan, Chris</p>
+              </div>
+              <div class="team">
+                <p>Hopfenhelden</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Simon, Marvin</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 3</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Hopfenhelden</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Simon, Marvin</p>
+              </div>
+              <div class="team">
+                <p>Zielwasser</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Philip, Tobias</p>
+              </div>
+                <div class="ti_number t6"></div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Bierpiloten</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Stefan, Chris</p>
+              </div>
+              <div class="team">
+                <p>Wurfkraft</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Oliver, Hannes</p>
+              </div>
+                <div class="ti_number t4"></div>
+            </div>
+        </div>
+
+        <!-- Gruppe 6 -->
+        <div class="group">
+          <h3>--- Gruppe 6 ---</h3>
+
+            <div class="match">
+              <div class="team">
+                <p>Wurfteufel</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Jannik, Bastian</p>
+              </div>
+              <div class="team">
+                <p>Kellermeister</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Alex, Daniel</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 8</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Becherjäger</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Sascha, Kevin</p>
+              </div>
+              <div class="team">
+                <p>Schaumbremse</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Mike, Andre</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 5</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Wurfteufel</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Jannik, Bastian</p>
+              </div>
+              <div class="team">
+                <p>Becherjäger</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Sascha, Kevin</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 6</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Kellermeister</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Alex, Daniel</p>
+              </div>
+              <div class="team">
+                <p>Schaumbremse</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Mike, Andre</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 4</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Schaumbremse</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Mike, Andre</p>
+              </div>
+              <div class="team">
+                <p>Wurfteufel</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Jannik, Bastian</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>6 - 10</div>
+            </div>
+
+            <div class="match">
+              <div class="team">
+                <p>Kellermeister</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Alex, Daniel</p>
+              </div>
+              <div class="team">
+                <p>Becherjäger</p>
+                <p><span style="color: steelblue;">Mitglieder: </span>Sascha, Kevin</p>
+              </div>
+                <div class="ti_number finnished">Ergebnis: <br>10 - 9</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

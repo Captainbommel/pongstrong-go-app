@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+  <title>PongStrong - Turnierbaum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'Noto Sans Mono', monospace;
+      background-color: rgba(169, 216, 255, 0.94);
+      margin: 0;
+      text-align: center;
+    }
+
+    .navbar {
+      width: 100%; height: 25px;
+      background-color: white;
+      padding: 10px 0 10px 0;
+      display: flex; align-items: center;
+      box-shadow: 0 5px 13px;
+      margin-bottom: 20px;
+    }
+    .navbar a { color: black; font-size: large; margin: 8px; }
+
+    .champ, .euro, .conf, .super {
+      border-radius: 20px;
+      display: inline-block; background-color: cornsilk;
+      width: 95%;
+      margin-bottom: 12px;
+    }
+    @media only screen and (max-width: 700px) {
+      .champ, .euro, .conf, .super { width: 680px; margin: 5px; }
+      .navbar { width: 700px; }
+    }
+    .champ { height: 1200px; border: solid rebeccapurple 5px; }
+    .euro { height:   700px; border: solid royalblue 5px;}
+    .conf { height:   700px; border: solid yellowgreen 5px;}
+    .super { height:   280px; border: solid hotpink 5px;}
+    .match{
+      border: solid black 2.5px; border-radius: 10px;
+      background-color: white;
+      overflow: hidden; height: fit-content;
+      font-size: 18px;
+    }
+    .wrapper {
+      width: 100%; height: 98.7%;
+      display: grid; margin: 5px;
+    }
+    .c01 { grid-area: ca1; } .c02 { grid-area: ca2; } .c03 { grid-area: ca3; } .c04 { grid-area: ca4; }
+    .c05 { grid-area: ca5; } .c06 { grid-area: ca6; } .c07 { grid-area: ca7; } .c08 { grid-area: ca8; }
+    .c11 { grid-area: cb1; } .c12 { grid-area: cb2; } .c13 { grid-area: cb3; } .c14 { grid-area: cb4; }
+    .c21 { grid-area: cc1; } .c22 { grid-area: cc2; }
+    .c31 { grid-area: cd1; box-shadow: 0 0 20px rebeccapurple; }
+    .l1 { grid-area: l1; font-size: 35px; text-shadow: 2px 2px 3px rebeccapurple; text-align: end;}
+    .champ .wrapper {
+      grid-template-columns: repeat(4, 24.7%);
+      grid-template-areas:
+      "ca1 . l1 l1"
+      ". cb1 . ."
+      "ca2 . . ."
+      ". . cc1 ."
+      "ca3 . . ."
+      "t2 cb2 . ."
+      "ca4 . . ."
+      ". . . cd1"
+      "ca5 . . ."
+      "t3 cb3 . ."
+      "ca6 . . ."
+      ". . cc2 ."
+      "ca7 . . ."
+      "t4 cb4 . ."
+      "ca8 . . ."
+    }
+    .e01 { grid-area: eb1; } .e02 { grid-area: eb2; } .e03 { grid-area: eb3; } .e04 { grid-area: eb4; }
+    .e11 { grid-area: ec1; } .e12 { grid-area: ec2; }
+    .e21 { grid-area: ed1; box-shadow: 0 0 10px royalblue; }
+    .l2 { grid-area: l2; font-size: 30px; text-shadow: 2px 2px 3px royalblue; text-align: end;}
+    .euro .wrapper {
+      grid-template-columns: repeat(3, 32.9%);
+      grid-template-areas:
+      "eb1 l2 l2"
+      ". ec1 ."
+      "eb2 . ."
+      ". . ed1"
+      "eb3 . ."
+      ". ec2 ."
+      "eb4 . ."
+    }
+    .f01 { grid-area: fb1; } .f02 { grid-area: fb2; } .f03 { grid-area: fb3; } .f04 { grid-area: fb4; }
+    .f11 { grid-area: fc1; } .f12 { grid-area: fc2; }
+    .f21 { grid-area: fd1; box-shadow: 0 0 10px yellowgreen; }
+    .l3 { grid-area: l3; font-size: 27px; text-shadow: 1px 1px 5px yellowgreen; text-align: end;}
+    .conf .wrapper {
+      grid-template-columns: repeat(3, 32.9%);
+      grid-template-areas:
+      "fb1 l3 l3"
+      ". fc1 ."
+      "fb2 . ."
+      ". . fd1"
+      "fb3 . ."
+      ". fc2 ."
+      "fb4 . ."
+    }
+    .s0 { grid-area: s1; } .s1 { grid-area: s2; box-shadow: 0 0 10px hotpink; }
+    .l4 { grid-area: l4; font-size: 27px; text-shadow: 1px 1px 5px hotpink; text-align: center;}
+    .super .wrapper {
+      grid-template-columns: repeat(5, 19.9%);
+      grid-template-areas:
+      ". . l4 . ."
+      ". s1 . s2 ."
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="spielfeld.html">Spielfeld</a>
+    <a href="übersicht.html">Gruppen</a>
+    <a href="turnierbaum.html">Knockout</a>
+    <a href="regeln.html">Regeln</a>
+  </div>
+
+  <!-- CHAMPIONS LEAGUE -->
+  <div class="champ">
+    <div class="wrapper">
+      <div class="l1">Champions League&nbsp</div>
+
+      <!-- Round 1 (Quarterfinals of 8) -->
+      <div class="match c01">
+        <div>Ponginator</div>
+        <div class="purp score">10 - 7</div>
+        <div>Kellermeister</div>
+      </div>
+
+      <div class="match c02">
+        <div>Becherfluch</div>
+        <div class="purp score">10 - 4</div>
+        <div>Trinkinator</div>
+      </div>
+
+      <div class="match c03">
+        <div>Zielwasser</div>
+        <div class="purp score">10 - 8</div>
+        <div>Hopfenherzen</div>
+      </div>
+
+      <div class="match c04">
+        <div>Wurfteufel</div>
+        <div class="purp score">10 - 6</div>
+        <div>Bierpiloten</div>
+      </div>
+
+      <div class="match c05">
+        <div>Wurfmaschine</div>
+        <div class="purp score">10 - 9</div>
+        <div>Bierkönige</div>
+      </div>
+
+      <div class="match c06">
+        <div>Kugelhagel</div>
+        <div class="purp score">8 - 10</div>
+        <div>Bierrakete</div>
+      </div>
+
+      <div class="match c07">
+        <div>Malzmeister</div>
+        <div class="purp">versus</div>
+        <div>Becherjäger</div>
+      </div>
+
+      <div class="match c08">
+        <div>Schaumkrone</div>
+        <div class="purp">versus</div>
+        <div>Wurfkraft</div>
+      </div>
+
+      <!-- Round 2 (Semifinals) -->
+      <div class="match c11">
+        <div>Ponginator</div>
+        <div class="purp score">10 - 6</div>
+        <div>Becherfluch</div>
+      </div>
+
+      <div class="match c12">
+        <div>Zielwasser</div>
+        <div class="purp score">10 - 8</div>
+        <div>Wurfteufel</div>
+      </div>
+
+      <div class="match c13">
+        <div>Wurfmaschine</div>
+        <div class="purp">versus</div>
+        <div>Bierrakete</div>
+      </div>
+
+      <div class="match c14">
+        <div style="color: rebeccapurple;">Match</div>
+      </div>
+
+      <!-- Round 3 (Finals) -->
+      <div class="match c21">
+        <div>Ponginator</div>
+        <div class="purp">versus</div>
+        <div>Zielwasser</div>
+      </div>
+
+      <div class="match c22">
+        <div style="color: rebeccapurple;">Match</div>
+      </div>
+
+      <!-- Grand Final -->
+      <div class="match c31">
+        <div style="color: rebeccapurple;">Match</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EUROPA LEAGUE -->
+  <div class="euro">
+    <div class="wrapper">
+      <div class="l2">Europa League&nbsp</div>
+
+      <div class="match e01">
+        <div>Treffsicher</div>
+        <div class="purp score">10 - 6</div>
+        <div>Wurfkraft</div>
+      </div>
+
+      <div class="match e02">
+        <div>Pong Stars</div>
+        <div class="purp score">10 - 8</div>
+        <div>Becherjäger</div>
+      </div>
+
+      <div class="match e03">
+        <div>Malzmeister</div>
+        <div class="purp score">7 - 10</div>
+        <div>Schaumkrone</div>
+      </div>
+
+      <div class="match e04">
+        <div>Ballmagnet</div>
+        <div class="purp score">10 - 9</div>
+        <div>Wurfkraft</div>
+      </div>
+
+      <!-- Round 2 -->
+      <div class="match e11">
+        <div>Treffsicher</div>
+        <div class="purp score">10 - 7</div>
+        <div>Pong Stars</div>
+      </div>
+
+      <div class="match e12">
+        <div>Schaumkrone</div>
+        <div class="purp">versus</div>
+        <div>Ballmagnet</div>
+      </div>
+
+      <!-- Final -->
+      <div class="match e21">
+        <div style="color: royalblue;">Match</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFERENCE LEAGUE -->
+  <div class="conf">
+    <div class="wrapper">
+      <div class="l3">Conference League&nbsp</div>
+
+      <div class="match f01">
+        <div>Bierbeben</div>
+        <div class="purp score">10 - 4</div>
+        <div>Schaumbremse</div>
+      </div>
+
+      <div class="match f02">
+        <div>Becher Mafia</div>
+        <div class="purp score">10 - 7</div>
+        <div>Hopfenhelden</div>
+      </div>
+
+      <div class="match f03">
+        <div>Krugkönige</div>
+        <div class="purp score">D - 5</div>
+        <div>Ballmagnet</div>
+      </div>
+
+      <div class="match f04">
+        <div>Hopfenhelden</div>
+        <div class="purp score">10 - 6</div>
+        <div>Schaumbremse</div>
+      </div>
+
+      <!-- Round 2 -->
+      <div class="match f11">
+        <div>Bierbeben</div>
+        <div class="purp score">10 - 5</div>
+        <div>Becher Mafia</div>
+      </div>
+
+      <div class="match f12">
+        <div>Krugkönige</div>
+        <div class="purp">versus</div>
+        <div>Hopfenhelden</div>
+      </div>
+
+      <!-- Final -->
+      <div class="match f21">
+        <div style="color: yellowgreen;">Match</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPER CUP -->
+  <div class="super">
+    <div class="wrapper">
+      <div class="l4">Super-Cup&nbsp</div>
+
+      <div class="match s0">
+        <div style="color: hotpink;">Match</div>
+      </div>
+
+      <div class="match s1">
+        <div style="color: hotpink;">Match</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
